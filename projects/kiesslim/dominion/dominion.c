@@ -1231,7 +1231,7 @@ int adventurerCardEffect(struct gameState *state) {
 			shuffle(currentPlayer, state);
 		}
 		drawCard(currentPlayer, state);
-		cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]];  //top card of hand is most recently drawn card.
+		cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];  //top card of hand is most recently drawn card.
 		if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold) {
       drawnTreasure++;
     } else {
@@ -1254,7 +1254,7 @@ int minionCardEffect(struct gameState *state, int choice1, int choice2, int hand
   int currentPlayer = whoseTurn(state);
 
   //+1 action
-  state->numActions++;
+  //state->numActions++;
 
   //discard card from hand
   discardCard(handPos, currentPlayer, state, 0);

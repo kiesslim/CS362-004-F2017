@@ -1,0 +1,481 @@
+
+
+----- TESTING DRAWCARD-----
+
+deck=5, discard=0, hand=5, playedCards=0
+----- TEST: Drawing All Available Cards in Deck-----
+Drawing Card 1:
+PASS: handCount increased by 1
+PASS: deckCount decreased by 1
+PASS: card added to hand matches card removed from deck
+PASS: drawCard() returned 0 on success
+
+Drawing Card 2:
+PASS: handCount increased by 1
+PASS: deckCount decreased by 1
+PASS: card added to hand matches card removed from deck
+PASS: drawCard() returned 0 on success
+
+Drawing Card 3:
+PASS: handCount increased by 1
+PASS: deckCount decreased by 1
+PASS: card added to hand matches card removed from deck
+PASS: drawCard() returned 0 on success
+
+Drawing Card 4:
+PASS: handCount increased by 1
+PASS: deckCount decreased by 1
+PASS: card added to hand matches card removed from deck
+PASS: drawCard() returned 0 on success
+
+Drawing Card 5:
+PASS: handCount increased by 1
+PASS: deckCount decreased by 1
+PASS: card added to hand matches card removed from deck
+PASS: drawCard() returned 0 on success
+
+
+----- TEST: Draw from Empty Deck and Empty Discard -----
+PASS: deckCount ==  0
+PASS: discardCount == 0
+PASS: return status == -1
+PASS: handCount did not change
+
+
+----- TEST: Draw One Card From Empty Deck but Non-Empty Discard -----
+PASS: deck contains all cards previously in discard, less 1
+PASS: handCount increased by 1
+PASS: drawCard() returned 0 on success
+
+
+----- TEST: Drawing All Available Cards in Deck-----
+Drawing Card 1:
+PASS: handCount increased by 1
+PASS: deckCount decreased by 1
+PASS: card added to hand matches card removed from deck
+PASS: drawCard() returned 0 on success
+
+Drawing Card 2:
+PASS: handCount increased by 1
+PASS: deckCount decreased by 1
+PASS: card added to hand matches card removed from deck
+PASS: drawCard() returned 0 on success
+
+Drawing Card 3:
+PASS: handCount increased by 1
+PASS: deckCount decreased by 1
+PASS: card added to hand matches card removed from deck
+PASS: drawCard() returned 0 on success
+
+Drawing Card 4:
+PASS: handCount increased by 1
+PASS: deckCount decreased by 1
+PASS: card added to hand matches card removed from deck
+PASS: drawCard() returned 0 on success
+
+Drawing Card 5:
+PASS: handCount increased by 1
+PASS: deckCount decreased by 1
+PASS: card added to hand matches card removed from deck
+PASS: drawCard() returned 0 on success
+
+Drawing Card 6:
+PASS: handCount increased by 1
+PASS: deckCount decreased by 1
+PASS: card added to hand matches card removed from deck
+PASS: drawCard() returned 0 on success
+
+Drawing Card 7:
+PASS: handCount increased by 1
+PASS: deckCount decreased by 1
+PASS: card added to hand matches card removed from deck
+PASS: drawCard() returned 0 on success
+
+Drawing Card 8:
+PASS: handCount increased by 1
+PASS: deckCount decreased by 1
+PASS: card added to hand matches card removed from deck
+PASS: drawCard() returned 0 on success
+
+Drawing Card 9:
+PASS: handCount increased by 1
+PASS: deckCount decreased by 1
+PASS: card added to hand matches card removed from deck
+PASS: drawCard() returned 0 on success
+
+
+ALL TESTS COMPLETED SUCCESSFULLY
+File 'dominion.c'
+Lines executed:19.13% of 643
+Branches executed:16.14% of 409
+Taken at least once:13.94% of 409
+No calls
+dominion.c:creating 'dominion.c.gcov'
+
+
+
+----- TESTING DISCARDCARD-----
+
+----- TEST: Discarding All Cards in Hand-----
+PASS: discared card removed from hand
+PASS: discarded card appears in played cards in correct position
+PASS: discared card removed from hand
+PASS: discarded card appears in played cards in correct position
+PASS: discared card removed from hand
+PASS: discarded card appears in played cards in correct position
+PASS: discared card removed from hand
+PASS: discarded card appears in played cards in correct position
+PASS: discared card removed from hand
+PASS: discarded card appears in played cards in correct position
+PASS: playedCardCount == 5
+PASS: handCount == 0
+
+
+----- TEST: Trash Cards -----
+PASS: discarded card removed from hand
+PASS: discarded card removed from hand
+PASS: discarded card removed from hand
+PASS: discarded card removed from hand
+PASS: discarded card removed from hand
+PASS: playedCardCount == 0
+PASS: handCount == 0
+
+
+----- TEST: discarding Cards from middle of Hand @ HandPos = 1 -----
+PASS: card removed from middle of deck replaced with last card in previous hand
+PASS: hand count decreased
+PASS: card removed from middle of deck replaced with last card in previous hand
+PASS: hand count decreased
+PASS: card removed from middle of deck replaced with last card in previous hand
+PASS: hand count decreased
+PASS: card removed from middle of deck replaced with last card in previous hand
+PASS: hand count decreased
+
+
+ALL TESTS COMPLETED SUCCESSFULLY
+File 'dominion.c'
+Lines executed:18.66% of 643
+Branches executed:17.60% of 409
+Taken at least once:14.18% of 409
+No calls
+dominion.c:creating 'dominion.c.gcov'
+
+
+
+----- TESTING UPDATECOINS-----
+
+PASS: hand full of coppers
+PASS: hand full of coppers
+PASS: hand full of coppers
+PASS: hand full of coppers
+PASS: hand full of coppers
+PASS: hand full of silvers
+PASS: hand full of silvers
+PASS: hand full of silvers
+PASS: hand full of silvers
+PASS: hand full of silvers
+PASS: hand full of golds
+PASS: hand full of golds
+PASS: hand full of golds
+PASS: hand full of golds
+PASS: hand full of golds
+
+
+ALL TESTS COMPLETED SUCCESSFULLY
+File 'dominion.c'
+Lines executed:17.11% of 643
+Branches executed:16.63% of 409
+Taken at least once:13.69% of 409
+No calls
+dominion.c:creating 'dominion.c.gcov'
+
+
+
+----- TESTING ISGAMEOVER-----
+
+PASS: game, that should NOT be over, is not over
+PASS: game, that should NOT be over, is not over
+PASS: game, that should be over, is over
+PASS: game, that should be over, is over
+PASS: game, that should be over, is over
+PASS: game, that should be over, is over
+PASS: game, that should be over, is over
+PASS: game, that should be over, is over
+PASS: game, that should be over, is over
+PASS: game, that should be over, is over
+PASS: game, that should NOT be over, is not over
+PASS: game, that should NOT be over, is not over
+PASS: game, that should be over, is over
+PASS: game, that should be over, is over
+PASS: game, that should be over, is over
+PASS: game, that should be over, is over
+PASS: game, that should be over, is over
+PASS: game, that should be over, is over
+PASS: game, that should be over, is over
+PASS: game, that should be over, is over
+PASS: game, that should NOT be over, is not over
+PASS: game, that should NOT be over, is not over
+PASS: game, that should be over, is over
+PASS: game, that should be over, is over
+PASS: game, that should be over, is over
+PASS: game, that should be over, is over
+PASS: game, that should be over, is over
+PASS: game, that should be over, is over
+PASS: game, that should be over, is over
+PASS: game, that should be over, is over
+
+
+ALL TESTS COMPLETED SUCCESSFULLY
+File 'dominion.c'
+Lines executed:18.35% of 643
+Branches executed:18.09% of 409
+Taken at least once:14.67% of 409
+No calls
+dominion.c:creating 'dominion.c.gcov'
+
+
+
+----- TESTING SMITHY-----
+
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+FAIL: only 2 cards added to hand, expected 3
+
+
+^^^TESTS FAILED
+File 'dominion.c'
+Lines executed:20.84% of 643
+Branches executed:23.72% of 409
+Taken at least once:14.67% of 409
+No calls
+dominion.c:creating 'dominion.c.gcov'
+
+
+
+----- TESTING ADVENTURER-----
+
+----- TESTING NUMBER OF TREASURE COINS IN HAND AFTER ADVENTURER PLAYED -----
+
+
+
+TEST Treasure in Deck =0
+treasureCount = 0
+PASS: deck with no coppers, does not increase treasure count
+
+
+TEST Treasure in Deck =1
+treasureCount = 1
+PASS: deck of with 1 copper, adds 1 copper to hand
+
+
+TEST Treasure in Deck =2
+treasureCount = 2
+PASS: deck with 2...n coppers, adds 2 coppers to hand
+
+
+TEST Treasure in Deck =3
+treasureCount = 3
+FAIL: deck with 2...n coppers, adds 2 coppers to hand
+
+
+TEST Treasure in Deck =4
+treasureCount = 3
+FAIL: deck with 2...n coppers, adds 2 coppers to hand
+
+
+^^^TESTS FAILED
+File 'dominion.c'
+Lines executed:22.55% of 643
+Branches executed:25.67% of 409
+Taken at least once:16.87% of 409
+No calls
+dominion.c:creating 'dominion.c.gcov'
+
+
+
+----- TESTING SALVAGER choice1 = 0 -----
+
+FAIL: 2 coins added to hand
+PASS: buys increased by 1
+FAIL: 2 coins added to hand
+PASS: buys increased by 1
+FAIL: 2 coins added to hand
+PASS: buys increased by 1
+FAIL: 2 coins added to hand
+PASS: buys increased by 1
+FAIL: 2 coins added to hand
+PASS: buys increased by 1
+FAIL: 2 coins added to hand
+PASS: buys increased by 1
+FAIL: 2 coins added to hand
+PASS: buys increased by 1
+FAIL: 2 coins added to hand
+PASS: buys increased by 1
+FAIL: 2 coins added to hand
+PASS: buys increased by 1
+FAIL: 2 coins added to hand
+PASS: buys increased by 1
+
+
+----- TESTING SALVAGER choice1 = 1 -----
+
+PASS: 2 coins added to hand
+PASS: buys increased by 1
+PASS: 2 coins added to hand
+PASS: buys increased by 1
+PASS: 2 coins added to hand
+PASS: buys increased by 1
+PASS: 2 coins added to hand
+PASS: buys increased by 1
+PASS: 2 coins added to hand
+PASS: buys increased by 1
+
+
+^^^TESTS FAILED
+File 'dominion.c'
+Lines executed:21.93% of 643
+Branches executed:30.56% of 409
+Taken at least once:15.40% of 409
+No calls
+dominion.c:creating 'dominion.c.gcov'
+
+
+
+----- TESTING MINION choice1 = 1; choice2 = 0 -----
+
+FAIL: number of Actions increased by 1
+PASS: number of coins increased by 2
+FAIL: number of Actions increased by 1
+PASS: number of coins increased by 2
+FAIL: number of Actions increased by 1
+PASS: number of coins increased by 2
+FAIL: number of Actions increased by 1
+PASS: number of coins increased by 2
+FAIL: number of Actions increased by 1
+PASS: number of coins increased by 2
+FAIL: number of Actions increased by 1
+PASS: number of coins increased by 2
+FAIL: number of Actions increased by 1
+PASS: number of coins increased by 2
+FAIL: number of Actions increased by 1
+PASS: number of coins increased by 2
+FAIL: number of Actions increased by 1
+PASS: number of coins increased by 2
+FAIL: number of Actions increased by 1
+PASS: number of coins increased by 2
+
+
+----- TESTING MINION choice1 = 0; choice2 = 1 -----
+
+FAIL: number of Actions increased by 1
+PASS: number of coins did not increase
+PASS: handCount player1 == 4
+PASS: handCount player2 == 4
+PASS: handCount player3 == 3
+
+
+^^^TESTS FAILED
+File 'dominion.c'
+Lines executed:22.40% of 643
+Branches executed:26.65% of 409
+Taken at least once:17.60% of 409
+No calls
+dominion.c:creating 'dominion.c.gcov'
+
