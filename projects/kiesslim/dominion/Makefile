@@ -6,6 +6,20 @@ rngs.o: rngs.h rngs.c
 dominion.o: dominion.h dominion.c rngs.o
 	gcc -c dominion.c -g  $(CFLAGS)
 
+adventurerRandomTest: randomtestadventurer.c dominion.o rngs.o
+	gcc -o adventurerRandomTest -g  randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+
+runRandomAdventurer: adventurerRandomTest
+	make clean
+	make adventurerRandomTest
+	./adventurerRandomTest
+
+randomcardtest1: randomcardtest1.c dominion.o rngs.o
+	gcc -o randomcardtest1 -g  randomcardtest1.c dominion.o rngs.o $(CFLAGS)
+
+randomcardtest2: randomcardtest2.c dominion.o rngs.o
+	gcc -o randomcardtest2 -g  randomcardtest2.c dominion.o rngs.o $(CFLAGS)
+
 #TODO: add Assignment3 Test Suite here, similar to above ^^^
 unittest1: unittest1.c dominion.o rngs.o
 	gcc -o unittest1 -g  unittest1.c dominion.o rngs.o $(CFLAGS)

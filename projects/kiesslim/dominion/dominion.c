@@ -1240,10 +1240,17 @@ int adventurerCardEffect(struct gameState *state) {
 			z++;
 		}
 	}
+
 	while (z - 1 >= 0) {
 		state->discard[currentPlayer][state->discardCount[currentPlayer]++] =
 				temphand[z - 1]; // discard all cards in play that have been drawn
 		z = z - 1;
+
+    // added to get coverage bc program fails due to sigabort when # of
+    // initial cards in deck == 500, and # treasure cards in deck == 0
+    if (z == 0) {
+      __gcov_flush();
+    }
 	}
 	return 0;
 }
