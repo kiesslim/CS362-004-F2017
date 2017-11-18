@@ -1307,7 +1307,7 @@ int salvagerCardEffect(struct gameState *state, int choice1, int handPos) {
 int smithyCardEffect(struct gameState *state, int handPos) {
   int currentPlayer = whoseTurn(state);
   //+3 Card
-  drawNCards(2, currentPlayer, state);
+  drawNCards(3, currentPlayer, state);
   //discard card from hand
   discardCard(handPos, currentPlayer, state, 0);
   return 0;

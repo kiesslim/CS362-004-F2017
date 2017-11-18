@@ -112,7 +112,7 @@ runCleanUT4:
 	gcov dominion.c -b >> unittestresultsCLEAN.out
 
 cardtest1: cardtest1.c dominion.o rngs.o
-	gcc -o cardtest1 -g  cardtest1.c dominion.o rngs.o $(CFLAGS)
+	gcc -o cardtest1 -g cardtest1.c dominion.o rngs.o $(CFLAGS)
 
 runCT1: cardtest1
 	./cardtest1 &> out.txt
