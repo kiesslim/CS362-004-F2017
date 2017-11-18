@@ -1,0 +1,148 @@
+
+
+----- TESTING SMITHY-----
+
+deckCount = 200
+PASS: 3 cards added to hand
+deckCount = 197
+PASS: 3 cards added to hand
+deckCount = 194
+PASS: 3 cards added to hand
+deckCount = 191
+PASS: 3 cards added to hand
+deckCount = 188
+PASS: 3 cards added to hand
+deckCount = 185
+PASS: 3 cards added to hand
+deckCount = 182
+PASS: 3 cards added to hand
+deckCount = 179
+PASS: 3 cards added to hand
+deckCount = 176
+PASS: 3 cards added to hand
+deckCount = 173
+PASS: 3 cards added to hand
+deckCount = 170
+PASS: 3 cards added to hand
+deckCount = 167
+PASS: 3 cards added to hand
+deckCount = 164
+PASS: 3 cards added to hand
+deckCount = 161
+PASS: 3 cards added to hand
+deckCount = 158
+PASS: 3 cards added to hand
+deckCount = 155
+PASS: 3 cards added to hand
+deckCount = 152
+PASS: 3 cards added to hand
+deckCount = 149
+PASS: 3 cards added to hand
+deckCount = 146
+PASS: 3 cards added to hand
+deckCount = 143
+PASS: 3 cards added to hand
+deckCount = 140
+PASS: 3 cards added to hand
+deckCount = 137
+PASS: 3 cards added to hand
+deckCount = 134
+PASS: 3 cards added to hand
+deckCount = 131
+PASS: 3 cards added to hand
+deckCount = 128
+PASS: 3 cards added to hand
+deckCount = 125
+PASS: 3 cards added to hand
+deckCount = 122
+PASS: 3 cards added to hand
+deckCount = 119
+PASS: 3 cards added to hand
+deckCount = 116
+PASS: 3 cards added to hand
+deckCount = 113
+PASS: 3 cards added to hand
+deckCount = 110
+PASS: 3 cards added to hand
+deckCount = 107
+PASS: 3 cards added to hand
+deckCount = 104
+PASS: 3 cards added to hand
+deckCount = 101
+PASS: 3 cards added to hand
+deckCount = 98
+PASS: 3 cards added to hand
+deckCount = 95
+PASS: 3 cards added to hand
+deckCount = 92
+PASS: 3 cards added to hand
+deckCount = 89
+PASS: 3 cards added to hand
+deckCount = 86
+PASS: 3 cards added to hand
+deckCount = 83
+PASS: 3 cards added to hand
+deckCount = 80
+PASS: 3 cards added to hand
+deckCount = 77
+PASS: 3 cards added to hand
+deckCount = 74
+PASS: 3 cards added to hand
+deckCount = 71
+PASS: 3 cards added to hand
+deckCount = 68
+PASS: 3 cards added to hand
+deckCount = 65
+PASS: 3 cards added to hand
+deckCount = 62
+PASS: 3 cards added to hand
+deckCount = 59
+PASS: 3 cards added to hand
+deckCount = 56
+PASS: 3 cards added to hand
+deckCount = 53
+PASS: 3 cards added to hand
+deckCount = 50
+PASS: 3 cards added to hand
+deckCount = 47
+PASS: 3 cards added to hand
+deckCount = 44
+PASS: 3 cards added to hand
+deckCount = 41
+PASS: 3 cards added to hand
+deckCount = 38
+PASS: 3 cards added to hand
+deckCount = 35
+PASS: 3 cards added to hand
+deckCount = 32
+PASS: 3 cards added to hand
+deckCount = 29
+PASS: 3 cards added to hand
+deckCount = 26
+PASS: 3 cards added to hand
+deckCount = 23
+PASS: 3 cards added to hand
+deckCount = 20
+PASS: 3 cards added to hand
+deckCount = 17
+PASS: 3 cards added to hand
+deckCount = 14
+PASS: 3 cards added to hand
+deckCount = 11
+PASS: 3 cards added to hand
+deckCount = 8
+PASS: 3 cards added to hand
+deckCount = 5
+PASS: 3 cards added to hand
+deckCount = 2
+FAIL: only 2 cards added to hand, expected 3
+
+
+^^^TESTS FAILED
+File 'dominion.c'
+Lines executed:28.48% of 639
+Branches executed:31.41% of 417
+Taken at least once:23.02% of 417
+No calls
+dominion.c:creating 'dominion.c.gcov'
+

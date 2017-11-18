@@ -1,0 +1,114 @@
+Title: Smithy Card draws 5 Cards instead of 3
+
+Class: Serious Bug
+
+Date: 11.13.2017
+Reported By: Meredith Kiessling
+Email: kiesslim@oregonstate.edu
+
+Product: mullaneypDominion/dominion.c   Version: Assignment-2
+Platform: MacOSX El Capitan     Version: 10.11.6
+
+Is it reproducible: Yes
+
+Description
+===========
+SmithyCard when played, adds 5 cards to the player's hand instead of 3.
+
+
+Steps to Produce/Reproduce
+--------------------------
+1). create two gameStates (struct gameState currG, prevG;)
+2). initialize Kingdom Cards (int k[10] = {/*select 10 cards*/})
+3). initialize a game with 2 players (initializeGame(numPlayer, k, seed, &currG);)
+4). save currG in prevG (memcpy (&prevG, &currG, sizeof(struct gameState));)
+4). initialize handPos, choice1, choice2, choice3, and bonus to 0
+5). call cardEffect(smithy, choice1, choice2, choice3, &currG, handPos, &bonus);
+6). check previous hand count to current hand count
+7). repeat (This may require adding more cards to deck in step 3).
+
+
+Expected Results
+----------------
+prevG.handCount[0]-currG.handCount[0] == 3
+
+
+Actual Results
+--------------
+prevG.handCount[0]-currG.handCount[0] == 5
+
+
+Workarounds
+-----------
+None
+
+
+Attachments
+-----------
+unittestresultsCLEAN.out
+
+
+Other Information
+-----------------
+Cause of bug is due to logic in drawCard for-loop. Change for(i = 0; i < 5; i++)
+to for(i = 0; i < 3; i++).
+
+
+
+################################################################################
+
+Title: AdventurerCard: SigTrap Error when No Treasure Cards in Deck
+
+Class: Serious Bug
+
+Date: 11.13.2017
+Reported By: Meredith Kiessling
+Email: kiesslim@oregonstate.edu
+
+Product: mullaneypDominion/dominion.c   Version: Assignment-2
+Platform: MacOSX El Capitan     Version: 10.11.6
+
+Is it reproducible: Yes
+
+Description
+===========
+AdventurerCard: SigTrap Error occurs when the Adventurer Card is played
+and there are no Adventurer Cards in the player's deck, and the deckCount
+contains 500 cards (or any deck count over MAX_DECK/2).
+
+
+Steps to Produce/Reproduce
+--------------------------
+1). create gameState (struct gameState currG)
+2). initialize Kingdom Cards (int k[10] = {/*select 10 cards*/})
+3). initialize a game with 2 players (initializeGame(numPlayer, k, seed, &currG);)
+4). initialize handCount to MAX_HAND and populate hand full of estate cards
+5). initialize deckCount to MAX_DECK and populate deck full of estate cards
+6). initialize handPos, choice1, choice2, choice3, and bonus to 0
+7). call cardEffect(adventurer, choice1, choice2, choice3, &currG, handPos, &bonus);
+
+
+
+Expected Results
+----------------
+No coins added to hand
+
+
+Actual Results
+--------------
+Program crashes with `Abort Trap: 6` error
+
+
+Workarounds
+-----------
+None
+
+
+Attachments
+-----------
+randomadventurerresults.out
+
+
+Other Information
+-----------------
+Cause of bug is likely due to logic  in while-loop of adventurer.
