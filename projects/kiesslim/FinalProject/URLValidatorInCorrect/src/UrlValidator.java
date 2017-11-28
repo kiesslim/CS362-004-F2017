@@ -149,13 +149,13 @@ public class UrlValidator implements Serializable {
     private static final Pattern PATH_PATTERN = Pattern.compile(PATH_REGEX);
     
     private static final String QUERY_REGEX = "^(.*)$";
-    
+   
     private static final Pattern QUERY_PATTERN = Pattern.compile(QUERY_REGEX);
 
     private static final String LEGAL_ASCII_REGEX = "^\\p{ASCII}+$";
     private static final Pattern ASCII_PATTERN = Pattern.compile(LEGAL_ASCII_REGEX);
 
-    private static final String PORT_REGEX = "^:(\\d{1,3})$";
+    private static final String PORT_REGEX = "^:(\\d{1,5})$";
     private static final Pattern PORT_PATTERN = Pattern.compile(PORT_REGEX);
 
     /**
@@ -393,6 +393,19 @@ public class UrlValidator implements Serializable {
             if (!PORT_PATTERN.matcher(port).matches()) {
                 return false;
             }
+ 
+            String portNumberStr = port.substring(1);
+            int iPort = 0;
+
+            try {
+                iPort = Integer.parseInt(portNumberStr);
+            } catch(NumberFormatException e) {
+                return false;
+            }
+
+            if (iPort > 65535) {
+            	return false;
+            }
         }
 
         String extra = authorityMatcher.group(PARSE_AUTHORITY_EXTRA);
@@ -443,7 +456,7 @@ public class UrlValidator implements Serializable {
             return true;
         }
         
-        return !QUERY_PATTERN.matcher(query).matches();
+        return QUERY_PATTERN.matcher(query).matches();
     }
 
     /**
