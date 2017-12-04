@@ -20,8 +20,6 @@ import junit.framework.TestCase;
 
 
 
-
-
 /**
  * Performs Validation Test for url validations.
  *
@@ -35,7 +33,14 @@ public class UrlValidatorTest extends TestCase {
    public UrlValidatorTest(String testName) {
       super(testName);
    }
-
+   
+ 
+   public void urlAssertThat(String test, UrlValidator urlVal, String url, boolean expected) {
+	   if (urlVal.isValid(url) != expected) {
+		   System.out.println(test + ": " + url + " returned " + !expected +". Expected " + expected);
+	   }
+   }
+   
    
    public void testManualTest()
    {
@@ -43,66 +48,73 @@ public class UrlValidatorTest extends TestCase {
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 	   
 	   //valid Scheme + Authority
+	   String testStr = "Manual Testing: Valid Scheme & Authority";
 	   System.out.print("\n########## Valid Scheme + Valid Authority#############\n");
-	   System.out.println("http://www.google.com \n" + urlVal.isValid("http://www.google.com"));
-	   System.out.println("http://google.com \n" + urlVal.isValid("http://google.com"));
-	   System.out.println("http://123.123.11.1 \n" + urlVal.isValid("http://123.123.11.1"));
-	   System.out.println("google.com: " + urlVal.isValid("google.com"));
-	   System.out.println("http://1.1.1.1\n" + urlVal.isValid("http://1.1.1.1"));
-	   System.out.println("http://0.0.0.0\n" + urlVal.isValid("http://0.0.0.0"));
-	   System.out.println("http://255.255.255.255\n" + urlVal.isValid("http://255.255.255.255"));
-	  
+	   urlAssertThat(testStr, urlVal, "http://www.google.com", true);
+	   urlAssertThat(testStr, urlVal, "http://google.com", true);
+	   urlAssertThat(testStr, urlVal, "http://123.123.11.1", true);
+	   urlAssertThat(testStr, urlVal, "google.com", true);
+	   urlAssertThat(testStr, urlVal, "http://1.1.1.1", true);
+	   urlAssertThat(testStr, urlVal, "http://0.0.0.0", true);
+	   urlAssertThat(testStr, urlVal, "http://0.0.0.0", true);
+	   urlAssertThat(testStr, urlVal, "http://255.255.255.255", true);
+	   
 	   
 	   //invalid Scheme + valid Authority
 	   System.out.print("\n########## Invalid Scheme + Valid Authority #############\n");
-	   System.out.println("http//www.google.com \n" + urlVal.isValid("http//www.google.com"));
-	   System.out.println("http.//www.google.com \n" + urlVal.isValid("http.//www.google.com"));
-	   System.out.println("http:/www.google.com \n" + urlVal.isValid("http.//www.google.com"));
-	   
+	   testStr = "Manual Testing: Invalid Scheme + Valid Authority";
+	   urlAssertThat(testStr, urlVal, "http//www.google.com", false);
+	   urlAssertThat(testStr, urlVal, "http.//www.google.com", false);
+	   urlAssertThat(testStr, urlVal, "http://www.google.com", false);
+
 	   
 	   //valid Scheme + invalid Authority
 	   System.out.print("\n########## Valid Scheme + Invalid Authority #############\n");
-	   System.out.println("http://www.google \n" + urlVal.isValid("http://www.google"));
-	   System.out.println("http://256.256.256.256 \n" + urlVal.isValid("http://256.256.256.256"));
-	   System.out.println("http://257.257.257.257 \n" + urlVal.isValid("http://257.257.257.257"));
-	   System.out.println("1.1.1.1 \n" + urlVal.isValid(""+"1.1.1.1"));
-	   System.out.println("http://-1.-1.-1.-1\n" + urlVal.isValid("http://-1.-1.-1.-1"));
-
+	   testStr = "Manual Testing: Valid Scheme + Invalid Authority";
+	   urlAssertThat(testStr, urlVal, "http://www.google", false);
+	   urlAssertThat(testStr, urlVal, "http://256.256.256.256", false);
+	   urlAssertThat(testStr, urlVal, "http://257.257.257.257", false);
+	   urlAssertThat(testStr, urlVal, ""+"1.1.1.1", false);
+	   urlAssertThat(testStr, urlVal, "http://-1.-1.-1.-1", false);
+	   
 	   
 	   // Valid Scheme+Authority + Valid Port number
 	   System.out.print("\n########## Valid Scheme+Authority + Valid Port# #############\n");
-	   System.out.println("http://www.google.com:80 \n" + urlVal.isValid("http://www.google.com:80"));
-	   System.out.println("http://www.google.com:22 \n" + urlVal.isValid("http://www.google.com:22"));
-	   System.out.println("http://www.google.com:650 \n" + urlVal.isValid("http://www.google.com:650"));
-	   System.out.println("http://www.google.com:65534 \n" + urlVal.isValid("http://www.google.com:65534"));
-	   System.out.println("http://www.google.com:65535 \n" + urlVal.isValid("http://www.google.com:65535"));
+	   testStr = "Manual Testing: Valid Scheme+Authority + Valid Port#";
 
+	   urlAssertThat(testStr, urlVal, "http://www.google.com:80", true);
+	   urlAssertThat(testStr, urlVal, "http://www.google.com:22", true);
+	   urlAssertThat(testStr, urlVal, "http://www.google.com:650", true);
+	   urlAssertThat(testStr, urlVal, "http://www.google.com:65534", true);
+	   urlAssertThat(testStr, urlVal, "http://www.google.com:65535", true);
 	   
-	   // Valid Scheme+Authority + Valid Port number
+	   // Valid Scheme+Authority + Invalid Port number
 	   System.out.print("\n########## Valid Scheme+Authority + Invalid Port# #############\n");
-	   System.out.println("http://www.google.com:65536 \n" + urlVal.isValid("http://www.google.com:65536"));
-	   System.out.println("http://www.google.com:a \n" + urlVal.isValid("http://www.google.com:a"));
-	   System.out.println("http://www.google.com:-10000 \n" + urlVal.isValid("http://www.google.com:-1000"));
-	   System.out.println("http://www.google.com:120000 \n" + urlVal.isValid("http://www.google.com:120000"));
-	   
+	   testStr = "Manual Testing: Valid Scheme & Authority + Invalid Port#";
+
+	   urlAssertThat(testStr, urlVal, "http://www.google.com:65536", false);
+	   urlAssertThat(testStr, urlVal, "http://www.google.com:a", false);
+	   urlAssertThat(testStr, urlVal, "http://www.google.com:-1000", false);
+	   urlAssertThat(testStr, urlVal, "http://www.google.com:120000", false);
 	   
 	   // Valid Scheme+Authority + valid Query
 	   System.out.print("\n########## Valid Scheme+Authority + Valid Query #############\n");
-	   System.out.println("http://www.mytest.com/page?field1=value1&field2=value2\n" + urlVal.isValid("http://www.mytest.com/page?field1=value1&field2=value2"));
-	   System.out.println("http://www.google.com/search?field1=value1&field2=value2\n" + urlVal.isValid("http://www.google.com/search?field1=value1&field2=value2"));
-	   System.out.println("https://www.google.de/search?dcr=0&source=hp&ei=d7MSWt_ANs6N0gW-xqa4Bg&q=best+coffee&oq=best+coffee&gs_l=psy-ab.3..0l10.13916.20661.0.20880.35.25.9.0.0.0.124.1849.20j2.25.0....0...1.1.64.psy-ab..1.31.1879.0..46j0i46k1j0i10k1.72.Dh0GurbZ7Js: \n" + urlVal.isValid("https://www.google.de/search?dcr=0&source=hp&ei=d7MSWt_ANs6N0gW-xqa4Bg&q=best+coffee&oq=best+coffee&gs_l=psy-ab.3..0l10.13916.20661.0.20880.35.25.9.0.0.0.124.1849.20j2.25.0....0...1.1.64.psy-ab..1.31.1879.0..46j0i46k1j0i10k1.72.Dh0GurbZ7Js"));
-	   System.out.println("https://www.google.de/maps/@52.5068441,13.4247317,10z?hl=en\n" + urlVal.isValid("https://www.google.de/maps/@52.5068441,13.4247317,10z?hl=en"));
-	   System.out.println("http://www.mytest.com?action=view \n" + urlVal.isValid("http://www.mytest.com?action=view"));
-	
+	   testStr = "Manual Testing: Valid Scheme & Authority + Valid Query";
+
+	   urlAssertThat(testStr, urlVal, "http://www.mytest.com/page?field1=value1&field2=value2", true);
+	   urlAssertThat(testStr, urlVal, "http://www.google.com/search?field1=value1&field2=value2", true);
+	   urlAssertThat(testStr, urlVal, "https://www.google.de/search?dcr=0&source=hp&ei=d7MSWt_ANs6N0gW-xqa4Bg&q=best+coffee&oq=best+coffee&gs_l=psy-ab.3..0l10.13916.20661.0.20880.35.25.9.0.0.0.124.1849.20j2.25.0....0...1.1.64.psy-ab..1.31.1879.0..46j0i46k1j0i10k1.72.Dh0GurbZ7Js", true);
+	   urlAssertThat(testStr, urlVal, "http://www.mytest.com?action=view", true);
 	   
 	   // Valid Scheme+Authority + Invalid Query
 	   System.out.print("\n\n########## Valid Scheme+Authority + Invalid Query #############\n");
-	   System.out.print("http://www.google.com/search?field1=value1field2=value2 \n" + urlVal.isValid("http://www.google.com/search?field1=value1field2=value2"));
+	   testStr = "Manual Testing: Valid Scheme & Authority + Invalid Query";
+	   urlAssertThat(testStr, urlVal, "http://www.google.com/search?field1=value1field2=value2", false);
 	   
 	   // Valid Scheme+Authority + valid Path
 	   System.out.print("\n\n########## Valid Scheme+Authority + Valid Path #############\n");
-	   System.out.print("https://docs.oracle.com/javase/tutorial/essential/io/formatting.html \n" + urlVal.isValid("https://docs.oracle.com/javase/tutorial/essential/io/formatting.html" + "\n"));
-
+	   testStr = "Manual Testing: Valid Scheme & Authority + Valid Path";
+	   urlAssertThat(testStr, urlVal, "https://docs.oracle.com/javase/tutorial/essential/io/formatting.html", true);
    }
    
    // Partition by schemes.
@@ -114,13 +126,15 @@ public class UrlValidatorTest extends TestCase {
 	   System.out.print("\n\n########## Testing partition: valid scheme: ##########\n");
 	   for(int i = 0; i < validSchemes.length; i++) {
 		   testURL = validSchemes[i].item += "www.google.com";
-		   System.out.println(testURL + "\n" + urlVal.isValid(testURL));
+		   //System.out.println(testURL + "\n" + urlVal.isValid(testURL));
+		   urlAssertThat("Partition Test- Valid Scheme", urlVal, testURL, true);
 	   }
 	   
 	   System.out.print("\n########## Testing partition: invalid scheme: ##########\n");
 	   for(int i = 0; i < invalidSchemes.length; i++) {
 		   testURL = invalidSchemes[i].item += "www.google.com";
-		   System.out.println(testURL + "\n" + urlVal.isValid(testURL));
+		   //System.out.println(testURL + "\n" + urlVal.isValid(testURL));
+		   urlAssertThat("Partition Test- Invalid Scheme", urlVal, testURL, false);
 	   }
    }
    
@@ -133,13 +147,15 @@ public class UrlValidatorTest extends TestCase {
 	   System.out.print("\n########## Testing partition: valid authorities: ##########\n");
 	   for(int i = 0; i < validAuthority.length; i++) {
 		   testURL = scheme + validAuthority[i].item;
-		   System.out.println(testURL + "\n" + urlVal.isValid(testURL));
+		   //System.out.println(testURL + "\n" + urlVal.isValid(testURL));
+		   urlAssertThat("Partition Test- Valid Authority", urlVal, testURL,true);
 	   }
 	   
 	   System.out.print("\n########## Testing partition: invalid authorities: ##########\n");
 	   for(int i = 0; i < invalidAuthority.length; i++) {
 		   testURL = scheme + invalidAuthority[i].item;
-		   System.out.println(testURL + "\n" + urlVal.isValid(testURL));
+		   //System.out.println(testURL + "\n" + urlVal.isValid(testURL));
+		   urlAssertThat("Partition Test- Invalid Authority", urlVal, testURL, false);
 	   }
    }
    
@@ -153,13 +169,15 @@ public class UrlValidatorTest extends TestCase {
 	   System.out.print("\n\n########## Testing partition: valid ports: ##########\n");
 	   for(int i = 0; i < validPorts.length; i++) {
 		   testURL =  url + validPorts[i].item;
-		   System.out.println(testURL + "\n" + urlVal.isValid(testURL));
+		   //System.out.println(testURL + "\n" + urlVal.isValid(testURL));
+		   urlAssertThat("Partition Test- Valid Ports", urlVal, testURL, true);
 	   }
 	   
 	   System.out.print("\n########## Testing partition: invalid ports: ##########\n");
 	   for(int i = 0; i < invalidPorts.length; i++) {
 		   testURL = url + invalidPorts[i].item;
-		   System.out.println(testURL + "\n" + urlVal.isValid(testURL));
+		   //System.out.println(testURL + "\n" + urlVal.isValid(testURL));
+		   urlAssertThat("Partition Test- Invalid Ports", urlVal, testURL, false);
 	   }
    }
    
@@ -173,13 +191,15 @@ public class UrlValidatorTest extends TestCase {
 	   System.out.print("\n########## Testing partition: valid paths: ##########\n");
 	   for(int i = 0; i < validPath.length; i++) {
 		   testURL =  url + validPath[i].item;
-		   System.out.println(testURL + "\n" + urlVal.isValid(testURL));
+		   //System.out.println(testURL + "\n" + urlVal.isValid(testURL));
+		   urlAssertThat("Partition Test- Valid Path", urlVal, testURL, true);
 	   }
 	   
 	   System.out.print("\n########## Testing partition: invalid paths: ##########\n");
 	   for(int i = 0; i < invalidPath.length; i++) {
 		   testURL = url + invalidPath[i].item;
-		   System.out.println(testURL + "\n" + urlVal.isValid(testURL));
+		   //System.out.println(testURL + "\n" + urlVal.isValid(testURL));
+		   urlAssertThat("Partition Test- Invalid Path", urlVal, testURL, false);
 	   }
    }
    
@@ -193,27 +213,187 @@ public class UrlValidatorTest extends TestCase {
 	   System.out.print("\n########## Testing partition: valid queries: ##########\n");
 	   for(int i = 0; i < validQuery.length; i++) {
 		   testURL =  url + validQuery[i].item;
-		   System.out.println(testURL + "\n" + urlVal.isValid(testURL));
+		   //System.out.println(testURL + "\n" + urlVal.isValid(testURL));
+		   urlAssertThat("Partition Test- Valid Query", urlVal, testURL, true);
 	   }
 	   
 	   System.out.print("\n########## Testing partition: invalid queries: ##########\n");
 	   for(int i = 0; i < invalidQuery.length; i++) {
 		   testURL = url + invalidQuery[i].item;
-		   System.out.println(testURL + "\n" + urlVal.isValid(testURL));
+		   //System.out.println(testURL + "\n" + urlVal.isValid(testURL));
+		   urlAssertThat("Partition Test- Invalid Query", urlVal, testURL, false);
 	   }
    }
    
    public void testIsValid()
    {
-	   for(int i = 0;i<10000;i++)
-	   {
-		   
-	   }
+      String my_scheme[] = {
+   				   "http://",
+   				   "ftp://",
+   				   "https://",
+   				   "sftp://",
+   				   "ssh://",
+   				   ""
+      },
+   		   my_authority[] = {
+   				   "amazon.com",
+   				   "google.com",
+   				   "apple.com",
+   				   "asp.net",
+   				   "words.edu",
+   				   "piazza.net",
+   				   "250.19.101.15"
+      },
+   		   my_port[] = {
+   				   ":0",
+   				   ":10000",
+   				   ":13000",
+   				   ":47027",
+   				   ":65535",
+   				   ""
+      },
+   		   my_path[] = {
+   				   "/11/30/2017/index.html",
+   				   "/words/gohere/index.php",
+   				   "/32/1358/2016/blah.htm",
+   				   "/somePage/ice/index.php",
+   				   "/?this=that",
+   				   "/?a=b&b=c",
+   				   ""
+      },
+   		   my_bad_scheme[] = {
+   				   "sftp://",
+   				   "ssh://"
+      },
+   		   my_bad_authority[] = {
+   				   "256.0.0.0",
+   				   "0.261.1.400",
+   				   "156.93.49.-72",
+   				   "-1.1.17.200",
+   				   ""
+      },
+   		   my_bad_port[] = {
+   				   ":-1",
+   				   ":66541",
+   				   ":75121",
+   				   ":84610",
+   				   ":99999",
+   				   "-65535"
+      },
+   		   my_bad_path[] = {
+   				   ".html",
+   				   ".php",
+   				   ".c",
+   				   ".js",
+   				   "ghfdhd"
+      };
+	 
+    	  test_all_valid(my_scheme, my_authority, my_port, my_path);
+    	  test_bad_scheme(my_bad_scheme, my_authority, my_port, my_path);
+    	  test_bad_authority(my_scheme, my_bad_authority, my_port, my_path);
+    	  test_bad_port(my_scheme, my_authority, my_bad_port, my_path);
+    	  test_bad_path(my_scheme, my_authority, my_port, my_bad_path);
+	}
+   
+   
+   //Called in testIsValid() tests valid scheme, authority, port, path
+   //All should assert as true.
+   void test_all_valid(String[] my_scheme, String[] my_authority, String[] my_port, String[] my_path)
+   {
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   
+		for (byte i = 0; i < my_scheme.length; i++) {
+			for (byte j = 0; j < my_authority.length; j++) {
+				for (byte k = 0; k < my_port.length; k++) {
+					for (byte m = 0; m < my_path.length; m++) {
+						String testURL;
+						testURL = my_scheme[i] + my_authority[j] + my_port[k] + my_path[m];
+						//System.out.println(testURL + "\n" + urlVal.isValid(testURL));
+						urlAssertThat("Unit Test- test_all_valid", urlVal, testURL, true);
+					}
+				}
+			}
+		}
    }
    
-   public void testAnyOtherUnitTest()
+   //Called in testIsValid() tests valid authority, port, path: invalid scheme
+   //All should assert as false.
+   void test_bad_scheme(String[] my_bad_scheme, String[] my_authority, String[] my_port, String[] my_path)
    {
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 	   
+	   for (byte i = 0; i < my_bad_scheme.length; i++) {
+			for (byte j = 0; j < my_authority.length; j++) {
+				for (byte k = 0; k < my_port.length; k++) {
+					for (byte m = 0; m < my_path.length; m++) {
+						String testURL;
+						testURL = my_bad_scheme[i] + my_authority[j] + my_port[k] + my_path[m];
+						//System.out.println(testURL + "\n" + urlVal.isValid(testURL));
+						urlAssertThat("Unit Test- bad Scheme", urlVal, testURL, false);
+					}
+				}
+			}
+	    }
+   }
+   
+   //Called in testIsValid() tests valid scheme, port, path: invalid authority
+   //All should assert as false.
+   void test_bad_authority(String[] my_scheme, String[] my_bad_authority, String[] my_port, String[] my_path)
+   {
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+
+		for (byte i = 0; i < my_scheme.length; i++) {
+			for (byte j = 0; j < my_bad_authority.length; j++) {
+				for (byte k = 0; k < my_port.length; k++) {
+					for (byte m = 0; m < my_path.length; m++) {
+						String testURL;
+						testURL = my_scheme[i] + my_bad_authority[j] + my_port[k] + my_path[m];
+						//System.out.println(testURL + "\n" + urlVal.isValid(testURL));
+						urlAssertThat("Unit Test- bad Authority", urlVal, testURL, false);
+					}
+				}
+			}
+		}
+   }
+   
+   //Called in testIsValid() tests valid scheme, authority, path: invalid port
+   //All should assert as false.
+   void test_bad_port(String[] my_scheme, String[] my_authority, String[] my_bad_port, String[] my_path)
+   {
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   
+		for (byte i = 0; i < my_scheme.length; i++) {
+			for (byte j = 0; j < my_authority.length; j++) {
+				for (byte k = 0; k < my_bad_port.length; k++) {
+					for (byte m = 0; m < my_path.length; m++) {
+						String testURL;
+						testURL = my_scheme[i] + my_authority[j] + my_bad_port[k] + my_path[m];
+						//System.out.println(testURL + "\n" + urlVal.isValid(testURL));
+						urlAssertThat("Unit Test- bad port", urlVal, testURL, false);
+					}
+				}
+			}
+		}
+   }
+   
+   //Called in testIsValid() tests valid scheme, port, authority: invalid path
+   //All should assert as false.
+   void test_bad_path(String[] my_scheme, String[] my_authority, String[] my_port, String[] my_bad_path)
+   {
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   
+		for (byte i = 0; i < my_scheme.length; i++) {
+			for (byte j = 0; j < my_authority.length; j++) {
+				for (byte k = 0; k < my_port.length; k++) {
+					for (byte m = 0; m < my_bad_path.length; m++) {
+						String testURL;
+						testURL = my_scheme[i] + my_authority[j] + my_port[k] + my_bad_path[m];
+						//System.out.println(testURL + "\n" + urlVal.isValid(testURL));
+						urlAssertThat("Unit Test- bad path", urlVal, testURL, false);
+					}
+				}
+			}
+		}
    }
    /**
     * Create set of tests by taking the testUrlXXX arrays and
