@@ -35,9 +35,10 @@ public class UrlValidatorTest extends TestCase {
    }
    
  
+   //prints to console if test fails. prints test name, url tested, expected result and actual result.
    public void urlAssertThat(String test, UrlValidator urlVal, String url, boolean expected) {
 	   if (urlVal.isValid(url) != expected) {
-		   System.out.println(test + ": " + url + " returned " + !expected +". Expected " + expected);
+		   System.out.println(test + " failed. '" + url + "' returned " + !expected +". Expected " + expected);
 	   }
    }
    
