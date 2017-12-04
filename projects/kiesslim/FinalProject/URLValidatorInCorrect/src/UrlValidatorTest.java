@@ -18,6 +18,13 @@
 
 import junit.framework.TestCase;
 
+import org.assertj.core.api.SoftAssertions;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.ClassRule;
+
+ 
+
 
 
 /**
@@ -34,11 +41,25 @@ public class UrlValidatorTest extends TestCase {
       super(testName);
    }
    
+   @ClassRule
+   private SoftAssertions softly = null;
+   
+   @Before
+   public void setUp() {
+	   softly = new SoftAssertions();
+   }
+
+   @After
+   public void tearDown() {
+	   softly.assertAll();
+   }
+   
  
    //prints to console if test fails. prints test name, url tested, expected result and actual result.
    public void urlAssertThat(String test, UrlValidator urlVal, String url, boolean expected) {
 	   if (urlVal.isValid(url) != expected) {
 		   System.out.println(test + " failed. '" + url + "' returned " + !expected +". Expected " + expected);
+		   softly.fail(test + " failed. '" + url + "' returned " + !expected +". Expected " + expected);
 	   }
    }
    
@@ -51,6 +72,7 @@ public class UrlValidatorTest extends TestCase {
 	   //valid Scheme + Authority
 	   String testStr = "Manual Testing: Valid Scheme & Authority";
 	   System.out.print("\n########## Valid Scheme + Valid Authority#############\n");
+	   
 	   urlAssertThat(testStr, urlVal, "http://www.google.com", true);
 	   urlAssertThat(testStr, urlVal, "http://google.com", true);
 	   urlAssertThat(testStr, urlVal, "http://123.123.11.1", true);
