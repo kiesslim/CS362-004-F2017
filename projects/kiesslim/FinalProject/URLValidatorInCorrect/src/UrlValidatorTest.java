@@ -18,6 +18,7 @@
 
 import junit.framework.TestCase;
 
+//NOTE: org.assertj jar included in github repo. the external jar must be added to the build before running
 import org.assertj.core.api.SoftAssertions;
 import org.junit.After;
 import org.junit.Before;
@@ -40,6 +41,8 @@ public class UrlValidatorTest extends TestCase {
    public UrlValidatorTest(String testName) {
       super(testName);
    }
+   
+   //SOURCE: https://automationrhapsody.com/soft-assertions-not-fail-junit-test/
    
    @ClassRule
    private SoftAssertions softly = null;
